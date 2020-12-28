@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Thu Dec 25 16:16:24 2020
+Created on Sun Dec 27 10:16:24 2020
 
 @author: Libo
 
@@ -38,9 +38,8 @@ def getMaxMatrix(matrix):
         for right in range(left, col):  # 这一列每一位为右边界
             for i in range(row):  # 遍历列中每一位，计算前缀和
                 colSum[i] += matrix[i][right]
-
-            startX, endX, maxAreaCur = getMax(
-                colSum)  # 在left，right为边界下的矩阵中，前缀和colSum的最大值
+            # 在left，right为边界下的矩阵中，前缀和colSum的最大值
+            startX, endX, maxAreaCur = getMax(colSum)
             if maxAreaCur > maxArea:
                 maxArea = maxAreaCur    # 更新最大子阵和
     return maxArea

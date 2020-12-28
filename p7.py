@@ -1,17 +1,11 @@
 # -*- coding: utf-8 -*-
 """
-Created on Thu Dec 25 16:42:47 2020
+Created on Mon Dec 28 16:37:47 2020
 
 @author: Libo
 
 作业题第7题
 """
-
-
-def heappush(heap, item):
-    """Push item onto heap, maintaining the heap invariant."""
-    heap.append(item)
-    _siftdown(heap, 0, len(heap)-1)
 
 
 def _siftdown(heap, startpos, pos):
@@ -34,7 +28,7 @@ def _siftup(heap, pos):
     startpos = pos
     newitem = heap[pos]
     # Bubble up the smaller child until hitting a leaf.
-    childpos = 2*pos + 1    # leftmost child position
+    childpos = 2 * pos + 1  # leftmost child position
     while childpos < endpos:
         # Set childpos to index of smaller child.
         rightpos = childpos + 1
@@ -43,16 +37,22 @@ def _siftup(heap, pos):
         # Move the smaller child up.
         heap[pos] = heap[childpos]
         pos = childpos
-        childpos = 2*pos + 1
+        childpos = 2 * pos + 1
     # The leaf at pos is empty now.  Put newitem there, and bubble it up
     # to its final resting place (by sifting its parents down).
     heap[pos] = newitem
     _siftdown(heap, startpos, pos)
 
 
+def heappush(heap, item):
+    """Push item onto heap, maintaining the heap invariant."""
+    heap.append(item)
+    _siftdown(heap, 0, len(heap) - 1)
+
+
 def heappop(heap):
     """Pop the smallest item off the heap, maintaining the heap invariant."""
-    lastelt = heap.pop()    # raises appropriate IndexError if heap is empty
+    lastelt = heap.pop()  # raises appropriate IndexError if heap is empty
     if heap:
         returnitem = heap[0]
         heap[0] = lastelt
@@ -104,8 +104,8 @@ class graph:
 if __name__ == "__main__":
     # # 测试用代码
     # n, m = 6, 9
-    # nums = [[1, 2, 2], [1, 4, 7], [1, 6, 8], [2, 3, 10], [2, 5, 1], [3, 4, 12],
-    #         [4, 5, 5], [4, 6, 6], [5, 6, 4]]
+    # nums = [[1, 2, 2], [1, 4, 7], [1, 6, 8], [2, 3, 10], [2, 5, 1],
+    #         [3, 4, 12], [4, 5, 5], [4, 6, 6], [5, 6, 4]]
     # g = graph(n, 1000000000000)
     # for i in nums:
     #     g.add(i[0], i[1], i[2])
@@ -128,14 +128,14 @@ if __name__ == "__main__":
     # 输入无权图相关元素
     size = input()
     size = [int(i) for i in size.split(' ')]
-    n, m = size[0], size[1]
+    m, n = size[0], size[1]
     G = []
-    for i in range(m):
+    for i in range(n):
         ele = input()
         ele = [int(i) for i in ele.split(' ')][0:3]
         G.append(ele)
     # 图实例化
-    g = graph(n, 99999999)
+    g = graph(m, 99999999)
     for i in G:
         g.add(i[0], i[1], i[2])
     g.dijkstra(1)
